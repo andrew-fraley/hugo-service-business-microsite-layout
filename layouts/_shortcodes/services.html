@@ -1,0 +1,92 @@
+{{ with .Page.Params.services }}
+    {{ if or .heading .items }}
+        <!-- 
+			Save the services data so it remains 
+			accessible inside nested template blocks. 
+		-->
+        {{ $services := . }}
+        <!-- 
+			Generate an ID to distinguish this shortcode
+			instance from others on the page. 
+		-->
+        {{ $id := printf "services-%d" $.Ordinal }}
+        <section class="services">
+            <div class="container">
+                <!-- Display the section heading if one is provided. -->
+                {{ with $services.heading }}
+                    <h2>{{ . }}</h2>
+                {{ end }}
+                <!-- Display the introductory text if it is provided. -->
+                {{ with $services.intro }}
+                    <p class="services-intro">{{ . }}</p>
+                {{ end }}
+
+                {{ with $services.items }}
+                    <!-- JavaScript uses data-services to identify this component. -->
+                    <div class="services-layout" data-services>
+                        <!-- LEFT SIDE: buttons for selecting a service. -->
+                        <div class="services-list" role="group" aria-label="Available services">
+                            <!-- 
+								Loop through each service. $index starts at 0;
+								$item holds the current service. 
+							-->
+                            {{ range $index, $item := . }}
+                                <button
+                                    class="services-list__button"
+                                    type="button"
+                                    data-service-index="{{ $index }}"
+                                    aria-controls="{{ $id }}-panel-{{ $index }}"
+                                    aria-pressed="{{ if eq $index 0 }}true{{ else }}false{{ end }}"
+                                >
+                                    <!-- Show the service name. -->
+                                    <span class="services-list__title">
+                                        {{ $item.title }}
+                                    </span>
+
+                                </button>
+
+                            {{ end }}
+                        </div>
+                        <!-- 
+							RIGHT SIDE: detail panels 
+							corresponding to the service buttons. 
+						-->
+                        <div class="services-panels">
+                            <!-- Create one detail panel for every service. -->
+                            {{ range $index, $item := . }}
+
+                                <article
+									class="services-panel"
+									id="{{ $id }}-panel-{{ $index }}"
+									data-service-panel="{{ $index }}"
+									{{ if ne $index 0 }}hidden{{ end }}
+								>
+									<h3>{{ $item.title }}</h3>
+									<p>{{ $item.description }}</p>
+
+									<!-- 
+										Display the service image only
+										when a path is provided. 
+									-->
+									{{ with $item.service_image }}
+										<img
+											class="services-panel__image"
+											src="{{ . | relURL }}"
+											alt="{{ $item.service_image_alt | default "" }}"
+											loading="lazy"
+											width="1200"
+											height="800"
+										>
+									{{ end }}
+								</article>
+                            {{ end }}
+                        </div>
+
+                    </div>
+                {{ end }}
+
+            </div>
+        </section>
+
+    {{ end }}
+{{ end }}

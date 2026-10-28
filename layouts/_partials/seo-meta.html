@@ -1,0 +1,21 @@
+<!-- Browser title and search-result descripton -->
+<title>{{ site.Title | default site.Title }}</title>
+<meta name="description" content="{{ .Description | default site.Params.descripton }}">
+
+<!-- Preferred public URL for this landing page. -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- This site is intended to be indexed -->
+<meta name="robots" content="index, follow">
+
+<!-- Social-sharing metadata. -->
+<meta property="og:title" content="{{ site.Title | default site.Title }}">
+<meta property="og:description" content="{{ .Description | default site.Params.description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+
+<!-- Optional social-sharing image configured in hugo.toml. -->
+{{ with site.Params.social.og_image }}
+	<meta property="og:image" content="{{ . | absURL }}">
+{{ end }}

@@ -1,0 +1,41 @@
+[module]
+  [module.hugoVersion]
+    min = "0.158.0"
+
+locale = 'en-us'
+title = "Your Service in Your Target Area"
+disableKinds = ['taxonomy']
+enableRobotsTXT = true
+
+[params]
+	description = "A concise description of the service and location served."
+
+	# Business
+	businessName = 'BUSINESS NAME'
+	businessType = 'example-industry'
+	businessURL = 'Example.com'
+	tagline = 'example tagline here'
+	serviceArea = 'exampleville, GA'
+
+	# Contact
+	email = 'example@bizname.com'
+	phone = '123-456-7890'
+	address = 'example address'
+
+	# Social
+
+	# Brand
+	[params.brand]
+	logo = '/images/biz-logo.svg'
+	logo_alt = 'Example Biz logo'
+
+	# Social images 
+	[params.social]
+	og_image = '/images/social-preview.jpg'
+
+	# Lead form backend URL and site key
+	# (database and FastAPI form identifer for the site)
+	[params.leadForm]
+	siteKey = 'baselayout-site-key'
+	apiURL = 'http://localhost:8000/leads'
+

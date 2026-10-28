@@ -1,0 +1,24 @@
+{{ with .Page.Params.process }}
+	{{ if .heading }}
+		<section class="process">
+
+			<div class="container">
+
+				{{ with .heading }}
+					<h2>{{ . }}</h2>
+				{{ end }}
+
+				{{ with $.Page.Params.process.steps }}
+					{{ range . }}
+						<div class="steps">
+							<h3>{{ .title }}</h3>
+							<p class="description">{{ .description }}</p>
+						</div>
+					{{ end }} 
+				{{ end }}
+
+			</div>
+
+		</section>
+	{{ end }}
+{{ end }}

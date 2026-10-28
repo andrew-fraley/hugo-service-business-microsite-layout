@@ -1,0 +1,28 @@
+<!-- Objections addressed in the Benefits section Why choose this business? -->
+{{ with .Page.Params.objections }}
+	{{ if or .heading .items }}
+		<section class="objections">
+
+			<div class="container">
+
+				{{ with .heading }}
+					<h2>{{ . }}</h2>
+				{{ end }}
+
+				
+				<div class="objections-grid">
+					{{ with $.Page.Params.objections.items }}
+						{{ range . }}
+							<article class="objection-card">
+								<h3>{{ .title }}</h3>
+								<p class="objection-card-description">{{ .description }}</p>
+							</article>
+						{{ end }}
+					{{ end }}
+				</div>
+
+			</div>
+
+		</section>
+	{{ end }}
+{{ end }}

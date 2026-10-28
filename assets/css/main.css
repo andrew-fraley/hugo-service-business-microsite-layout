@@ -1,0 +1,840 @@
+/* Heading font */
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("/fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Body font: regular */
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-latin-400-normal.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Body font: semibold */
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-latin-600-normal.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Body font: bold */
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/inter-latin-700-normal.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* COLORS */
+    --color-primary: #ec8229;         /* Main brand color: buttons, accents */
+    --color-primary-hover: #d46f17;   /* Hover state for primary buttons */
+    --color-primary-light: #f39a4b;   /* Lighter accent or hover variation */
+
+    --color-background: #ffffff;      /* Main page background */
+    --color-surface: #f3f6fa;         /* Alternate section or card background */
+    --color-text: #0c2844;            /* Main body text and headings */
+    --color-muted: #5b6b7d;           /* Secondary text, descriptions, notes */
+    --color-border: #dce3ec;          /* Borders, dividers, input outlines */
+
+    --color-dark: #0c2844;            /* Dark backgrounds and dark UI elements */
+    --color-light: #ffffff;           /* Light backgrounds and text on dark surfaces */
+    --color-on-primary: #0c2844;      /* Text and icons placed on primary-colored backgrounds */
+
+    --color-link: #2b5c8f;             /* Standard links on light backgrounds */
+    --color-focus: #2b5c8f;            /* Keyboard focus indicators for interactive elements */
+
+    --color-success: #16a34a;          /* Successful form submissions and confirmations */
+    --color-error: #dc2626;            /* Form errors and invalid states */
+
+    /* TYPOGRAPHY */
+    --font-body: "Inter", system-ui, sans-serif; /* Body copy, forms, navigation */
+    --font-heading: "Plus Jakarta Sans", system-ui, sans-serif; /* Headings and prominent text */
+
+    --font-size-base: 1rem;             /* Default body text: 16px at browser default */
+    --font-size-small: 0.875rem;        /* Small text: notes, labels, supporting details */
+    --font-size-h1: clamp(2.25rem, 4vw, 3.5rem); /* Main page heading, scales with viewport */
+    --font-size-h2: 2rem;               /* Main section headings */
+    --font-size-h3: 1.5rem;              /* Subheadings, card headings */
+
+    --font-weight-normal: 400;           /* Regular body text */
+    --font-weight-semibold: 600;         /* Emphasized text, labels, buttons */
+    --font-weight-bold: 700;             /* Main headings and strong emphasis */
+
+    --body-line-height: 1.6;              /* Vertical spacing between body text lines */
+    --heading-line-height: 1.2;            /* Tighter line spacing for headings */
+    --heading-letter-spacing: -0.01em;    /* Slightly tighter heading letters */
+	--letter-spacing-label: 0.08em;		/* letter spacing for labels and uppercase text */
+
+    --text-width-narrow: 52ch;            /* Comfortable maximum line length for copy */
+
+    /* LAYOUT */
+    --container-width: 1200px;             /* Maximum width of the overall page content */
+    --content-width: 750px;                /* Maximum width for text-focused sections */
+    --hero-content-width: 600px;           /* Maximum width for the hero text column */
+    --hero-form-width: 600px;              /* Maximum width for the hero lead form */
+
+    /* SPACING */
+    --space-1: 0.5rem;                     /* Small gaps: 8px */
+    --space-2: 1rem;                       /* Standard gaps: 16px */
+    --space-3: 1.5rem;                     /* Medium gaps: 24px */
+    --space-4: 2rem;                       /* Larger gaps: 32px */
+    --space-5: 2.5rem;                     /* Section element spacing: 40px */
+    --space-6: 3rem;                       /* Large spacing: 48px */
+    --space-7: 3.5rem;                     /* Extra-large spacing: 56px */
+    --space-8: 4rem;                       /* Major spacing: 64px */
+
+    --section-spacing: 3rem;                /* Default vertical spacing between sections */
+
+    /* COMPONENT DEFAULTS */
+    --image-radius: 0;                      /* Default image corner rounding: 0 means square */
+}
+
+/*========================
+BASE / GLOBAL STYLES 
+==========================*/
+
+/* Make element dimensions easier to calculate and fit true to size */
+*, /* every element such as div, section, img, and button */
+*::before, /* the ::before pseudo element of every element */
+*::after { /*the "" after pseudo element of every element */
+	box-sizing: border-box; /* makes the declared dimensions include padding and borders */
+}
+
+/* Remove browser spacing and establish default typography  */
+body {
+	margin: 0;
+	min-height: 100vh; /* makes the page at least as tall as the viewport */
+	display: flex; /* makes the body a vert flexbox layout (w/ column) */
+	flex-direction: column;
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--body-line-height);
+    color: var(--color-text);
+    background: var(--color-background);
+}
+
+main {
+	flex: 1;
+	width: 100%;
+}
+
+/* Keep media inside its available space */
+img,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+/* Remove default top spacing from common text elements */
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+/* Establish consistent heading typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--heading-line-height);
+    letter-spacing: var(--heading-letter-spacing);
+    color: var(--color-text);
+}
+
+/* Individual heading sizes come from the variable table */
+h1 {
+    font-size: var(--font-size-h1);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+}
+
+/* Keep long paragraphs comfortable to read */
+p {
+    max-width: var(--text-width-narrow);
+}
+
+/* Give links a consistent starting appearance */
+a {
+    color: var(--color-link);
+    text-underline-offset: 0.2em;
+}
+
+/* Inherit site typography in form controls */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Make keyboard focus visible */
+/* TEMPORARY disable OR perm disable depending on look/design
+:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+*/
+
+
+/* =========
+ * HEADER
+ ==========*/
+.site-header {
+	width: 100%;
+	background: var(--color-background);
+	border-bottom: 1px solid var(--color-border);
+}
+
+.container {
+	width: 100%;
+	max-width: var(--container-width);
+	margin-inline: auto;
+	padding-inline: var(--space-2);
+}
+
+.business-header {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: var(--space-2);
+	min-height: 76px;
+}
+
+/* Left aligned phone number */ 
+.header-phone {
+	justify-self: start;
+	color: var(--color-text);
+	font-weight: var(--font-weight-semibold);
+	text-decoration: none;
+}
+
+/* Center logo (Left) and biz name (Right) */
+.site-header__brand {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-1);
+	min-width: 0;
+}
+
+.site-header__brand img {
+	width: 40px;
+	height: 40px;
+	object-fit: contain;
+	flex-shrink: 0;
+}
+
+.business-name {
+	font-family: var(--font-heading);
+	font-weight: var(--font-weight-bold);
+	line-height: var(--heading-line-height);
+}
+
+/* Right email button */
+.header-email {
+	justify-self: end; 
+	text-decoration: none;
+}
+
+/* =========
+   FOOTER
+   ========= */
+
+.site-footer {
+    width: 100%;
+    padding-block: var(--space-4);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.business-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+/* Contact details */
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-muted);
+    font-size: var(--font-size-small);
+}
+
+/* Footer phone link */
+.footer-phone {
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+}
+
+.footer-phone:hover {
+    color: var(--color-link);
+}
+
+/*===============
+ * SHORTCODES
+ * ==============*/ 
+
+/* HERO */ 
+.hero {
+	position: relative;
+	padding-block: var(--space-6);
+	background-color: var(--color-surface);
+	border-bottom: 1px solid var(--color-border);
+}
+
+.hero-grid{
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: var(--space-3);
+	width: 100%;
+	max-width: var(--container-width);
+	margin-inline: auto;
+	padding-inline: var(--space-2);
+}
+
+.hero-eyebrow {
+	grid-column: 1 / -1;
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-semibold);
+	letter-spacing: var(--letter-spacing-label);
+	text-transform: uppercase;
+	color: var(--color-primary);
+	margin-bottom: var(--space-2);
+	text-align: center;
+}
+
+.hero-content {
+	grid-column: 1 / 9;
+}
+
+.hero-image {
+	margin-top: var(--space-3);
+	max-width: 33.333%;
+}
+
+.hero-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.hero-background {
+	position: absolute;
+	inset: 0;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	pointer-events: none;
+}
+
+.hero-form {
+	border: 1px solid var(--color-border);
+	grid-column: 9 / -1;
+	background: var(--color-background);
+	padding: var(--space-2);
+}
+
+
+.hero-trust {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: var(--space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color: var(--color-muted);
+}
+
+/* Hero background image (if it has one) */
+.background-image {
+}
+
+
+/* LEAD FORM */
+.form-field {
+	padding: 1px;
+}
+
+/* Hide text visually but keep it available to screen readers */
+.visually-hidden {
+	position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.lead-form_privacy {
+    font-size: var(--font-size-small);
+    color: var(--color-muted);
+}
+
+/* Lead form submission feedback */
+.form-message {
+    margin-bottom: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-h3);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background: var(--color-primary);
+    color: var(--color-light);
+}
+
+.form-message--error {
+    border-color: var(--color-error);
+    background: var(--color-error);
+}
+
+.form-message--success {
+    border-color: var(--color-border);
+    background: var(--color-success);
+    color: var(--color-light);
+}
+
+.form-message[hidden] {
+    display: none;
+}
+
+/* Body container to define the sizing of all non-hero shortcodes. */
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: var(--space-2);
+}
+
+/* OBJECTIONS */
+.objections {
+	width: 100%;
+}
+
+.objections-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: var(--space-2);
+	margin-block: var(--space-4) var(--space-6);
+}
+
+.objection-card {
+	min-width: 0;
+	padding: var(--space-3);
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: 1rem 0 1rem 0;
+}
+
+
+/* FAQ ACCORDION */
+
+/* Top and bottom borders around the full list of questions */
+.faq-items {
+    margin-block: var(--space-4) var(--space-6);
+    border-top: 1px solid var(--color-border);
+}
+
+/* A bottom divider under each question and answer */
+.faq-items__question {
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* The clickable question heading */
+.faq-items__question summary {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) 2.5rem var(--space-2) 0;
+    cursor: pointer;
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--heading-line-height);
+    /* Remove the browser's default disclosure marker */
+    list-style: none;
+}
+
+/* Hide the default marker in WebKit browsers, such as Chrome */
+.faq-items__question summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Add a plus sign at the right side of each question */
+.faq-items__question summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    color: var(--color-primary);
+	font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+}
+
+/* When the details element is open, change plus to minus */
+.faq-items__question[open] summary::after {
+    content: "−";
+}
+
+/* Show a visible outline when navigating by keyboard */
+.faq-items__question summary:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
+}
+
+/* Spacing inside the answer area */
+.faq-items__answer {
+    padding: 0 0 var(--space-2);
+	background: var(--color-surface);
+}
+
+/* Avoid extra top spacing on the first answer element */
+.faq-items__answer > :first-child {
+    margin-top: 0;
+}
+
+/* Avoid extra bottom spacing on the last answer element */
+.faq-items__answer > :last-child {
+    margin-bottom: 0;
+}
+
+/* Keep links inside answers consistent with the site's link colors */
+.faq-items__answer a {
+    color: var(--color-link);
+}
+
+.faq-items__answer a:hover {
+    color: var(--color-primary-hover);
+}
+
+
+/* SERVICES SECTION */
+
+.services {
+    padding-block: var(--space-4);
+}
+
+.services-intro {
+    margin-bottom: var(--space-4);
+}
+
+/* Desktop: list on the left, selected service on the right */
+.services-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+}
+
+/* Stack the service buttons vertically */
+.services-list {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* Each service selector is a real button */
+.services-list__button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    width: 100%;
+    padding: var(--space-1);
+    text-align: left;
+    font: inherit;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+}
+
+/* Highlight the currently selected service */
+.services-list__button[aria-pressed="true"] {
+    border-color: var(--color-primary);
+    background: var(--color-background);
+}
+
+/* Keyboard focus indicator */
+.services-list__button:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+.services-list__title {
+    font-weight: var(--font-weight-semibold);
+}
+
+.services-list__description {
+    color: var(--color-muted);
+    font-size: var(--font-size-small);
+}
+
+/* The service details card */
+.services-panels {
+    min-width: 0;
+    padding: var(--space-4);
+    background: var(--color-background);
+    border: 1px solid var(--color-primary);
+}
+
+.services-panels img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.services-panel h3 {
+    margin-top: 0;
+}
+
+/* The HTML hidden attribute must hide inactive panels */
+.services-panel[hidden] {
+    display: none;
+}
+
+/* service panel image */
+.services-panel__image {
+	width: 100%;
+	height: auto;
+	margin-top: var(--space-3);
+}
+
+/* SERVICE AREA SHORTCODE */
+.service-area {
+	border-top: 1px solid var(--color-border);
+	padding-top: var(--section-spacing);
+	padding-bottom: var(--section-spacing);
+}
+
+.service-area__description {
+	max-width: var(--text-width-narrow);
+	margin-bottom: var(--space-3);
+	color: var(--color-muted);
+}
+
+.service-area__locations {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.service-area__locations li {
+	padding: var(--space-2) var(--space-3);
+	background: var(--color-surface);
+	font-weight: var(--font-weight-semibold);
+}
+
+/* FINAL CTA BUTTON SHORTCODE */
+.final-cta {
+	width: 100%;
+	padding: var(--space-2);
+	background-color: var(--color-primary);
+}
+
+.final-cta__button {
+	display: block;
+	width: 100%;
+	color: var(--color-light);
+	font-size: var(--font-size-h3);
+	text-align: center;
+	text-decoration: none;
+	font-weight: var(--font-weight-semibold);
+}
+
+.final-cta__button:hover {
+	opacity: 0.9;
+}
+
+.final-cta__button:focus-visible {
+	outline: 3px solid currentColor;
+	outline-offset: 4px;
+}
+
+/* LEAD FORM */
+/* Hide the honeypot visually */
+.honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* =========================
+   MOBILE LAYOUT
+   ========================= */
+@media (max-width: 700px) {
+    /* HEADER */
+	/* decrease header elements size */
+
+	.business-header {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.site-header__brand {
+		grid-column: 1;
+		grid-row: 1/3;
+	}
+
+    .header-phone {
+		grid-column: 2;
+		grid-row: 1;
+		justify-self: end;
+    }
+
+	.header-email {
+		grid-column: 2;
+		grid-row: 2;
+		justify-self: end;
+	}
+
+    /* HERO */
+    .hero {
+        padding-block: var(--space-4);
+    }
+
+    .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-3);
+    }
+
+    .hero-eyebrow,
+    .hero-content,
+    .hero-form,
+    .hero-trust {
+        grid-column: 1 / -1;
+    }
+
+    .hero-eyebrow {
+        text-align: left;
+        margin-bottom: 0;
+    }
+
+    .hero-content {
+        min-width: 0;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2rem, 7vw, 2.75rem);
+    }
+
+    .hero-image {
+        max-width: 100%;
+    }
+
+
+    .hero-trust {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-1);
+    }
+
+	/* hero-trust li items (default 3) staggered staircase on mobile */
+	.hero-trust li:nth-child(1){
+		text-align: left;
+	}
+
+
+	.hero-trust li:nth-child(2){
+		text-align: center;
+	}
+
+	.hero-trust li:nth-child(3){
+		text-align: right;
+	}
+
+    /* OBJECTIONS */
+    .objections-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-2);
+        margin-block: var(--space-3) var(--space-4);
+    }
+
+    .objection-card {
+        padding: var(--space-2);
+    }
+
+
+    /* FAQ */
+    .faq-items__question summary {
+        font-size: 1.125rem;
+        padding-block: var(--space-2);
+        padding-right: 2rem;
+    }
+
+
+    /* SERVICES */
+    .services {
+        padding-block: var(--space-3);
+    }
+
+    .services-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .services-list {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0 0 var(--space-1);
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .services-list__button {
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 9rem;
+        max-width: 15rem;
+    }
+
+    .services-panels {
+        padding: var(--space-3);
+    }
+
+
+    /* SERVICE AREA */
+    .service-area {
+        padding-block: var(--space-4);
+    }
+
+    .service-area__locations {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+}

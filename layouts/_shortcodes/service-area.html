@@ -1,0 +1,26 @@
+{{ with .Page.Params.serviceArea }}
+	{{ if .heading }}
+		<section class="service-area">
+
+			<div class="container">
+
+				<h2>{{ .heading }}</h2>
+
+				{{ with .description }}
+					<p class="service-area__description">{{ . }}</p>
+				{{ end }}
+
+				{{ with $.Page.Params.serviceArea.locations }}
+					<ul class="service-area__locations">
+						{{ range . }}
+							<li>{{ . }}</li>
+						{{ end }}
+					</ul>
+				{{ end }}
+
+			</div>
+
+		</section>
+	{{ end }}
+{{ end }}
+

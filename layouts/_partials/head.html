@@ -1,0 +1,14 @@
+<!-- Required browser metadata -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Page title, search metadata, and social-sharing metadata. -->
+{{ partial "seo-meta.html" . }}
+
+<!-- Load the main stylesheet through Hugo's resource system. -->
+{{ with resources.Get "css/main.css" }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
+
+<!-- Browser tab favicon -->
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">

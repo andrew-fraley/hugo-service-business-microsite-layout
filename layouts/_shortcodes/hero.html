@@ -1,0 +1,61 @@
+{{ with .Page.Params.hero }}
+	<section class="hero">
+
+		<div class="hero-grid">
+			
+			{{ with .eyebrow }}
+				<p class="hero-eyebrow">
+					{{ . }}
+				</p>
+			{{ end }}
+
+			{{ with .background_image }}
+				<div
+					class="hero-background"
+					style="background-image: url('{{ . | relURL }}');"
+					aria-hidden="true"
+				>
+				</div>
+			{{ end }}
+
+			<div class="hero-content">
+				<!-- headline and subheadline -->
+				<h1>{{ .headline }}</h1>
+
+				{{ with .subheadline }}
+					<p class="hero-subheadline">{{ . }}</p>
+				{{ end }}
+
+				{{ with .image }}
+					<div class="hero-image">
+						<img 
+							src="{{ . | relURL }}"	 
+							alt="{{ $.Page.Params.hero.image_alt | default "" }}"
+							width="1200"
+							height="800"
+							fetchpriority="high"
+						>
+					</div>
+				{{ end }}
+
+			</div>
+
+			<div class="hero-form">
+				{{ $.Inner }}
+			</div>
+
+	
+			{{ with .trust }}
+				{{ if .enabled }}
+					<ul class="hero-trust">
+						{{ range .items }}
+							<li>{{ . }}</li>
+						{{ end }}
+					</ul>
+				{{ end }}
+			{{ end }}
+
+		</div>
+
+	</section>
+{{ end }}

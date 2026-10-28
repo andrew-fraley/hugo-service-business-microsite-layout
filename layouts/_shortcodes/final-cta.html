@@ -1,0 +1,9 @@
+{{ with .Page.Params.finalCta }}
+<section class="final-cta">
+	<!-- the final CTA button / bar at the bottom of the page -->
+	<a class="final-cta__button" href="{{ .buttonUrl }}">
+		{{ .buttonText }}
+	</a>
+
+</section>
+{{ end }}

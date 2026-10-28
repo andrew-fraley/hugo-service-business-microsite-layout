@@ -1,0 +1,29 @@
+{{ with .Page.Params.faq }}
+	{{ if or .heading .items }}
+		<section class="faq">
+
+			<div class="container">
+
+				{{ with .heading }}
+					<h2>{{ . }}</h2>
+				{{ end }}
+
+				{{ with $.Page.Params.faq.items }}
+					<div class="faq-items">
+						{{ range . }}
+							<details class="faq-items__question">
+								<summary>{{ .question }}</summary>
+
+								<div class="faq-items__answer">
+									<p>{{ .answer }}</p>
+								</div>
+							</details>
+						{{ end }}
+					</div>
+				{{ end }}
+
+			</div>
+
+		</section>
+	{{ end }}
+{{ end }}

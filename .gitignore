@@ -1,0 +1,10 @@
+# Hugo build output and caches
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Local config and secrets
+.env
+.env.*
+*.pem
+*.key

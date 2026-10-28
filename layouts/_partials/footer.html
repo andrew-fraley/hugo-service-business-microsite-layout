@@ -1,0 +1,32 @@
+<footer class="site-footer">
+	<div class="container">
+		<div class="business-footer">
+			<div class="site-header__brand">
+				<img 
+				 src="{{ site.Params.brand.logo }}" 
+				 alt="{{ site.Params.brand.logo_alt }}"
+				 >
+				 <span class="business-name">
+					 {{ site.Params.businessName }}
+				 </span>
+			</div>
+			<div class="footer-contact">
+				<a class="footer-phone" href="tel:{{ replaceRE `[^0-9+]` "" site.Params.phone }}">
+					{{ site.Params.phone }}
+				</a>
+				<!-- clickable email link to attempt to open mail app -->
+				{{ with site.Params.email }}
+					<a class="email" href="mailto:{{ . }}">{{ . }}</a>
+				{{ end }}
+				<!-- 
+					add a maps link or something if 
+					useful or delete this area if it ends 
+					up as clutter 
+				-->
+				<span class="service-area">
+					Serving {{ site.Params.serviceArea }} nearby areas.
+				</span>
+			</div>
+		</div>
+	</div>
+</footer>	

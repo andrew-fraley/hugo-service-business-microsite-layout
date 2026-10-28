@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction "ltr" }}">
+	<head>
+		<!-- Sharted metadata, SEO tags, stylesheet, and favicon -->
+		{{ block "head" . }}
+			{{ partial "head.html" . }}
+		{{ end }}
+
+		<!--
+			Load the services selector script through Hugo's 
+			resource system. "defer" runs it after the page is parsed.
+		-->
+		{{ with resources.Get "js/services.js" }}
+			<script src="{{ .RelPermalink }}" defer></script>
+		{{ end }}
+		
+		<!--
+			Load the lead form script. It safely does nothing
+			if the form is not on the page.
+		-->
+		{{ with resources.Get "js/lead-form.js" }}
+			<script src="{{ .RelPermalink }}" defer></script>
+		{{ end }}
+
+	</head>
+
+	<body>
+		{{ block "header" . }}
+			{{ partial "header.html" . }}
+		{{ end }}
+
+		<main>
+			{{ block "main" . }}
+				{{ .Content }}
+			{{ end }}
+		</main>
+
+		{{ block "footer" . }}
+			{{ partial "footer.html" . }}
+		{{ end }}
+	</body>
+</html>
